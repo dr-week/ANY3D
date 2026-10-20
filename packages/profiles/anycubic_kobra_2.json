@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "anycubic_kobra_2",
+  "name": "Anycubic Kobra 2",
+  "manufacturer": "Anycubic",
+  "architecture": "Direct-Drive Cartesian Bed-slinger",
+  "bed": {
+    "width_x_mm": 220,
+    "depth_y_mm": 220,
+    "height_z_mm": 250,
+    "origin": "front_left",
+    "shape": "rectangular",
+    "heated": true
+  },
+  "extruder": {
+    "type": "direct_drive",
+    "nozzle_diameter_mm": 0.4,
+    "filament_diameter_mm": 1.75,
+    "max_volumetric_speed_mm3s": 15.0,
+    "retraction": {
+      "distance_mm": 1.0,
+      "max_safe_distance_mm": 1.8,
+      "retract_speed_mms": 40.0,
+      "prime_speed_mms": 40.0,
+      "max_safe_speed_mms": 50.0,
+      "z_hop_mm": 0.2
+    }
+  },
+  "motion_limits": {
+    "first_layer_speed_mms": 40,
+    "outer_wall_speed_mms": 80,
+    "inner_wall_speed_mms": 150,
+    "infill_speed_mms": 180,
+    "travel_speed_mms": 250,
+    "max_acceleration_mms2": 2500,
+    "jerk_xy_mms": 10
+  },
+  "materials": {
+    "pla": {
+      "name": "PLA High-Speed",
+      "nozzle_temp_c": 210,
+      "bed_temp_c": 60,
+      "fan_speed_pct": 100,
+      "density_g_cm3": 1.24,
+      "cost_per_kg_usd": 19.99
+    },
+    "petg": {
+      "name": "PETG Tough",
+      "nozzle_temp_c": 235,
+      "bed_temp_c": 75,
+      "fan_speed_pct": 40,
+      "density_g_cm3": 1.27,
+      "cost_per_kg_usd": 22.99
+    },
+    "tpu": {
+      "name": "TPU 95A Flexible",
+      "nozzle_temp_c": 220,
+      "bed_temp_c": 50,
+      "fan_speed_pct": 50,
+      "density_g_cm3": 1.21,
+      "cost_per_kg_usd": 28.99
+    }
+  },
+  "custom_gcode": {
+    "start": "G28 ; Home all axes\nM420 S1 ; Load bed mesh leveling\nG1 Z2.0 F3000 ; Move Z up\nG1 X0.1 Y20 Z0.3 F5000.0 ; Move to start position\nG1 X0.1 Y200.0 Z0.3 F1500.0 E15 ; Draw purge line 1\nG1 X0.4 Y200.0 Z0.3 F5000.0 ; Move side\nG1 X0.4 Y20 Z0.3 F1500.0 E30 ; Draw purge line 2\nG92 E0 ; Reset Extruder\nG1 Z2.0 F3000 ; Move Z up",
+    "end": "M104 S0 ; Turn off nozzle\nM140 S0 ; Turn off bed\nG91 ; Relative positioning\nG1 E-1 F1800 ; Retract 1mm\nG1 Z10 F3000 ; Raise head\nG90 ; Absolute positioning\nG1 X0 Y220 F3000 ; Present print\nM84 ; Disable motors"
+  }
+}

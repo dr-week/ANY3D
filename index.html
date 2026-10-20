@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ANY3D — Next-Gen 3D Slicer (Anycubic Kobra 2 Calibrated)</title>
+    <!-- Tailwind CSS Play CDN for instantaneous reactive UI styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Custom dark scrollbar for Zuari drawers */
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: #090d16;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #1e293b;
+        border-radius: 4px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #06b6d4;
+      }
+    </style>
+  </head>
+  <body class="bg-slate-950 text-slate-100 overflow-hidden select-none m-0 p-0 font-sans antialiased">
+    <div id="app" class="w-full h-full"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

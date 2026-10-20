@@ -1,0 +1,98 @@
+{
+  "type": "machine",
+  "name": "Anycubic Kobra 2 0.4 nozzle",
+  "from": "system",
+  "instantiation": "true",
+  "inherits": "fdm_machine_common",
+  "gcode_flavor": "marlin",
+  "use_relative_e_distances": "1",
+  "use_firmware_retraction": "0",
+  "printable_area": [
+    "0x0",
+    "220x0",
+    "220x220",
+    "0x220"
+  ],
+  "printable_height": "250",
+  "nozzle_diameter": [
+    "0.4"
+  ],
+  "nozzle_type": "brass",
+  "retraction_length": [
+    "1.0"
+  ],
+  "retract_length_toolchange": [
+    "1.0"
+  ],
+  "z_hop": [
+    "0.2"
+  ],
+  "z_hop_types": [
+    "Slope"
+  ],
+  "retraction_speed": [
+    "40"
+  ],
+  "deretraction_speed": [
+    "40"
+  ],
+  "retract_restart_extra": [
+    "0"
+  ],
+  "retract_before_wipe": [
+    "70%"
+  ],
+  "wipe": [
+    "1"
+  ],
+  "wipe_distance": [
+    "1.5"
+  ],
+  "retract_when_changing_layer": [
+    "1"
+  ],
+  "machine_max_speed_x": [
+    "250"
+  ],
+  "machine_max_speed_y": [
+    "250"
+  ],
+  "machine_max_speed_z": [
+    "12"
+  ],
+  "machine_max_speed_e": [
+    "50"
+  ],
+  "machine_max_acceleration_x": [
+    "2500"
+  ],
+  "machine_max_acceleration_y": [
+    "2000"
+  ],
+  "machine_max_acceleration_z": [
+    "500"
+  ],
+  "machine_max_acceleration_e": [
+    "3000"
+  ],
+  "machine_max_acceleration_extruding": [
+    "2500"
+  ],
+  "machine_max_acceleration_retracting": [
+    "2500"
+  ],
+  "machine_max_jerk_x": [
+    "12"
+  ],
+  "machine_max_jerk_y": [
+    "8"
+  ],
+  "machine_max_jerk_z": [
+    "0.4"
+  ],
+  "machine_max_jerk_e": [
+    "5"
+  ],
+  "machine_start_gcode": "G90 ; Use absolute coordinates\nM83 ; Extruder relative mode\nM140 S[first_layer_bed_temperature] ; Start bed heating\nM104 S150 ; Soft pre-heat nozzle to prevent oozing\nM190 S[first_layer_bed_temperature] ; Wait for bed temp\nG28 ; Home all axes\nM420 S1 ; Load and activate EEPROM bed leveling mesh (CRITICAL)\nG1 Z2.0 F3000 ; Lift nozzle\nG1 X0.1 Y20 Z0.3 F5000.0 ; Move to purge position\nM104 S[first_layer_temperature] ; Set final nozzle temp\nM109 S[first_layer_temperature] ; Wait for nozzle temp\nG92 E0 ; Reset extruder\nG1 X0.1 Y180.0 Z0.3 F1500.0 E15 ; Purge line 1\nG1 X0.4 Y180.0 Z0.3 F5000.0 ; Shift side\nG1 X0.4 Y20.0 Z0.3 F1500.0 E30 ; Purge line 2\nG92 E0 ; Reset extruder\nG1 E-1.0 F2400 ; Direct-drive retract 1mm\nG1 Z2.0 F3000 ; Lift nozzle\nG1 X5 Y20 F5000 ; Wipe clear of line",
+  "machine_end_gcode": "M400 ; Wait for buffer to clear\nM104 S0 ; Turn off extruder\nM140 S0 ; Turn off bed\nM107 ; Turn off fan\nG91 ; Relative positioning\nG1 E-1.0 F2400 ; Direct-drive safe 1mm retract (prevents clogs)\nG1 Z+5.0 F3000 ; Lift print head\nG90 ; Absolute positioning\nG1 X0 Y215 F3000 ; Present bed forward for easy removal\nM84 X Y E ; Disable motors"
+}
